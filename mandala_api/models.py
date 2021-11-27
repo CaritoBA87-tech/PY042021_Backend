@@ -7,6 +7,7 @@ class Instructor(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100, null=True)
     descripcion = models.TextField(max_length=1000, null=True, blank=True)
+    img = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):
         """ Se define la representación en str para Instructor """
