@@ -24,7 +24,7 @@ class ClaseSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Clase
-        fields = ('nombre', 'descripcion', 'instructor', 'horarios', 'horarios_clase')
+        fields = ('id', 'nombre', 'descripcion', 'instructor', 'horarios', 'horarios_clase')
 
 class InstructorSerializer(serializers.HyperlinkedModelSerializer):
     """ Serializador para atender las peticiones para Instructor"""
@@ -33,4 +33,4 @@ class InstructorSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Instructor
-        fields = ('nombre', 'apellido', 'descripcion', 'clases', 'clases_instructor')
+        fields = ('id', 'nombre', 'apellido', 'descripcion', 'clases', 'clases_instructor')
