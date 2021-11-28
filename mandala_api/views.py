@@ -40,3 +40,17 @@ def planDetail(request, idPlan):
    response_data['horario'] = horario
 
    return JsonResponse(response_data)
+
+def instructorDetail(request, idInstructor):
+   instructor = Instructor.objects.get(pk = idInstructor)
+
+   clases = []
+
+   for c in instructor.clases_instructor.all():
+      clases.append({'clase': c.nombre})
+
+   response_data = {}
+   response_data['instructor'] = {'nombre': instructor.nombre, 'apellido': instructor.apellido, 'descripcion': instructor.descripcion, 'img': instructor.img }
+   response_data['clases'] = clases
+
+   return JsonResponse(response_data)
