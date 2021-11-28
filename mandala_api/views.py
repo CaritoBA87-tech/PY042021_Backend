@@ -3,7 +3,8 @@ from .models import *
 from rest_framework import viewsets
 from rest_framework import serializers
 from .serializer import *
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -54,3 +55,20 @@ def instructorDetail(request, idInstructor):
    response_data['clases'] = clases
 
    return JsonResponse(response_data)
+
+"""@csrf_exempt 
+def newClient(request, nombre, apellido, correo, telefono):
+   cliente = Cliente(nombre=nombre, apellido=apellido, correo=correo, telefono=telefono)
+   cliente.save()
+
+   return HttpResponse('', status=201)"""
+
+@csrf_exempt 
+def newClient(request, nombre, apellido, correo, telefono):
+   
+   cliente = Cliente(nombre=nombre, apellido=apellido, correo=correo, telefono=telefono)
+   cliente.save()
+
+   return HttpResponse('', status=201)
+
+

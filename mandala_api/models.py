@@ -49,4 +49,24 @@ class Plan(models.Model):
 
     def __str__(self):
         """ Se define la representación en str para Plan """
-        return "{} {} {}".format(self.id, self. nombre, self.costo) 
+        return "{} {} {}".format(self.id, self. nombre, self.costo)
+
+class Aficion(models.Model): 
+    """ Define el modelo Aficion """
+    nombre = models.CharField(max_length=60,  null=False)
+
+    def __str__(self):
+        return "{}".format(self.nombre) 
+
+class Cliente(models.Model): 
+    """ Define el modelo Cliente """
+    nombre = models.CharField(max_length=45,  null=False)
+    apellido = models.CharField(max_length=60, null=True)
+    correo = models.CharField(max_length=60, null=False)
+    telefono = models.CharField(max_length=12,  null=True)
+    aficiones = models.ManyToManyField(Aficion)
+
+    def __str__(self):
+        """ Se define la representación en str para Cliente """
+        return "{} {} {}".format(self.id, self. nombre, self.apellido, self.correo)
+

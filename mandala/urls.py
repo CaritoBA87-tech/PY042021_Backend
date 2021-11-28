@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from mandala_api import views
 from rest_framework import routers
+from django.conf.urls import url
 
 router = routers.DefaultRouter()
 router.register(r'planes', views.PlanViewSet)
@@ -30,4 +31,5 @@ urlpatterns = [
     path("api/auth/", include("rest_framework.urls",namespace="rest_framework")),
     path('planDetail/<int:idPlan>/', views.planDetail),
     path('instructorDetail/<int:idInstructor>/', views.instructorDetail),
+    path('newClient/<str:nombre>/<str:apellido>/<str:correo>/<str:telefono>/', views.newClient),
 ]

@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'mandala.wsgi.application'
 }"""
 
 #Conexión a la base de datos Mandala en el contenedor Docker "pythonsql"
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Mandala',
@@ -98,10 +98,10 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
     }
-}
+}"""
 
 #Conexión para la base de datos en Heroku (app-mandala)
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd29im0k95b9c4g',
@@ -110,7 +110,7 @@ DATABASES = {
         'HOST': 'ec2-44-195-186-235.compute-1.amazonaws.com',
         'PORT': '5432',
     }
-}"""
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
