@@ -60,7 +60,7 @@ def claseDetail(request, idClase):
    clase = Clase.objects.get(pk = idClase)
 
    response_data = {}
-   response_data['clase'] = {'nombre': clase.nombre, 'descripcion': clase.descripcion, 'instructor': clase.instructor.nombre + " " + clase.instructor.apellido }
+   response_data['clase'] = {'nombre': clase.nombre, 'descripcion': clase.descripcion, 'instructor': clase.instructor.nombre + " " + clase.instructor.apellido, 'img' : clase.img }
    
    return JsonResponse(response_data)
 
