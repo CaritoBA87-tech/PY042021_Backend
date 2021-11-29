@@ -15,12 +15,12 @@ class PlanViewSet(viewsets.ModelViewSet):
 
 class InstructorViewSet(viewsets.ModelViewSet):
    """API que permite realizar operaciones en la tabla Instructor"""
-   queryset = Instructor.objects.all().order_by('id')
+   queryset = Instructor.objects.all().order_by('nombre')
    serializer_class = InstructorSerializer
 
 class ClaseViewSet(viewsets.ModelViewSet):
    """API que permite realizar operaciones en la tabla Clase"""
-   queryset = Clase.objects.all().order_by('id')
+   queryset = Clase.objects.all().order_by('nombre')
    serializer_class = ClaseSerializer
 
 class HorarioViewSet(viewsets.ModelViewSet):
@@ -47,7 +47,7 @@ def instructorDetail(request, idInstructor):
 
    clases = []
 
-   for c in instructor.clases_instructor.all():
+   for c in instructor.clases_instructor.all().order_by('nombre'):
       clases.append({'clase': c.nombre})
 
    response_data = {}
