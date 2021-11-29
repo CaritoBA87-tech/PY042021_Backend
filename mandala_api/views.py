@@ -56,19 +56,12 @@ def instructorDetail(request, idInstructor):
 
    return JsonResponse(response_data)
 
-"""@csrf_exempt 
-def newClient(request, nombre, apellido, correo, telefono):
-   cliente = Cliente(nombre=nombre, apellido=apellido, correo=correo, telefono=telefono)
-   cliente.save()
-
-   return HttpResponse('', status=201)"""
-
 @csrf_exempt 
 def newClient(request, nombre, apellido, correo, telefono):
    
    cliente = Cliente(nombre=nombre, apellido=apellido, correo=correo, telefono=telefono)
    cliente.save()
 
-   return HttpResponse('', status=201)
+   return HttpResponse('Done', status=201)
 
 
