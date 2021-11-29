@@ -18,6 +18,7 @@ class Clase(models.Model):
     nombre = models.CharField(max_length=45)
     descripcion = models.TextField(max_length=500, null=True, blank=True)
     instructor = models.ForeignKey(Instructor, on_delete=models.SET_NULL, null=True, blank=True, related_name="clases_instructor")
+    img = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):
         return "{}".format(self.nombre) 

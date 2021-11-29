@@ -56,6 +56,14 @@ def instructorDetail(request, idInstructor):
 
    return JsonResponse(response_data)
 
+def claseDetail(request, idClase):
+   clase = Clase.objects.get(pk = idClase)
+
+   response_data = {}
+   response_data['clase'] = {'nombre': clase.nombre, 'descripcion': clase.descripcion, 'instructor': clase.instructor.nombre + " " + clase.instructor.apellido }
+   
+   return JsonResponse(response_data)
+
 @csrf_exempt 
 def newClient(request, nombre, apellido, correo, telefono):
    
