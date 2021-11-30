@@ -24,6 +24,8 @@ router.register(r'planes', views.PlanViewSet)
 router.register(r'instructores', views.InstructorViewSet)
 router.register(r'clases', views.ClaseViewSet)
 router.register(r'horarios', views.HorarioViewSet)
+router.register(r'clientes', views.ClienteViewSet)
+router.register(r'aficiones', views.AficionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +34,4 @@ urlpatterns = [
     path('planDetail/<int:idPlan>/', views.planDetail),
     path('instructorDetail/<int:idInstructor>/', views.instructorDetail),
     path('claseDetail/<int:idClase>/', views.claseDetail),
-    path('newClient/<str:nombre>/<str:apellido>/<str:correo>/<str:telefono>/', views.newClient),
 ]

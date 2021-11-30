@@ -4,7 +4,6 @@ from rest_framework import viewsets
 from rest_framework import serializers
 from .serializer import *
 from django.http import JsonResponse, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -27,6 +26,16 @@ class HorarioViewSet(viewsets.ModelViewSet):
    """API que permite realizar operaciones en la tabla Horario"""
    queryset = Horario.objects.all().order_by('id')
    serializer_class = HorarioSerializer
+
+class AficionViewSet(viewsets.ModelViewSet):
+   """API que permite realizar operaciones en la tabla Aficion"""
+   queryset = Aficion.objects.all().order_by('nombre')
+   serializer_class = AficionSerializer
+
+class ClienteViewSet(viewsets.ModelViewSet):
+   """API que permite realizar operaciones en la tabla Cliente"""
+   queryset = Cliente.objects.all().order_by('id')
+   serializer_class = ClienteSerializer
 
 def planDetail(request, idPlan):
    plan = Plan.objects.get(pk = idPlan)
@@ -63,13 +72,5 @@ def claseDetail(request, idClase):
    response_data['clase'] = {'nombre': clase.nombre, 'descripcion': clase.descripcion, 'instructor': clase.instructor.nombre + " " + clase.instructor.apellido, 'img' : clase.img }
    
    return JsonResponse(response_data)
-
-@csrf_exempt 
-def newClient(request, nombre, apellido, correo, telefono):
-   
-   cliente = Cliente(nombre=nombre, apellido=apellido, correo=correo, telefono=telefono)
-   cliente.save()
-
-   return HttpResponse('Done', status=201)
 
 

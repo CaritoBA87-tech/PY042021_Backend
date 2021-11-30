@@ -57,7 +57,7 @@ class Aficion(models.Model):
     nombre = models.CharField(max_length=60,  null=False)
 
     def __str__(self):
-        return "{}".format(self.nombre) 
+        return "{} {}".format(self.id, self.nombre) 
 
 class Cliente(models.Model): 
     """ Define el modelo Cliente """
@@ -65,7 +65,7 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=60, null=True)
     correo = models.CharField(max_length=60, null=False)
     telefono = models.CharField(max_length=12,  null=True)
-    aficiones = models.ManyToManyField(Aficion)
+    aficiones = models.ManyToManyField(Aficion, blank=True)
 
     def __str__(self):
         """ Se define la representación en str para Cliente """

@@ -34,3 +34,17 @@ class InstructorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Instructor
         fields = ('id', 'nombre', 'apellido', 'descripcion', 'clases', 'clases_instructor')
+
+class AficionSerializer(serializers.HyperlinkedModelSerializer):
+    """ Serializador para atender las peticiones para Aficion"""
+
+    class Meta:
+        model = Aficion
+        fields = ('id', 'nombre')
+
+class ClienteSerializer(serializers.HyperlinkedModelSerializer):
+    """ Serializador para atender las peticiones para Cliente"""
+
+    class Meta:
+        model = Cliente
+        fields = ('id', 'nombre', 'apellido', 'correo', 'telefono', 'aficiones')
