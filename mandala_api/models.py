@@ -69,5 +69,15 @@ class Cliente(models.Model):
 
     def __str__(self):
         """ Se define la representación en str para Cliente """
-        return "{} {} {}".format(self.id, self. nombre, self.apellido, self.correo)
+        return "{} {} {} {}".format(self.id, self. nombre, self.apellido, self.correo)
 
+class Accesorio(models.Model): 
+    """ Define el modelo Accesorio """
+    nombre = models.CharField(max_length=60,  null=False)
+    precio = models.DecimalField(max_digits=7, decimal_places=2)
+    descripcion = models.TextField(max_length=500, null=True, blank=True)
+    img = models.CharField(max_length=256, null=True, blank=True)
+
+    def __str__(self):
+        """ Se define la representación en str para Accesorio """
+        return "{} {} {} {}".format(self.id, self. nombre, self.precio, self.descripcion)
