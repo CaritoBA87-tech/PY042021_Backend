@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mandala_api',
     'rest_framework',
+    'graphene_django',
     'corsheaders',
 ]
 

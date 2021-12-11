@@ -18,6 +18,8 @@ from django.urls import path, include
 from mandala_api import views
 from rest_framework import routers
 from django.conf.urls import url
+from graphene_django.views import GraphQLView
+from mandala_api import schema 
 
 router = routers.DefaultRouter()
 router.register(r'planes', views.PlanViewSet)
@@ -34,4 +36,5 @@ urlpatterns = [
     path('planDetail/<int:idPlan>/', views.planDetail),
     path('instructorDetail/<int:idInstructor>/', views.instructorDetail),
     path('claseDetail/<int:idClase>/', views.claseDetail),
+    path("graphql", GraphQLView.as_view(graphiql=True, schema=schema.schema))
 ]
