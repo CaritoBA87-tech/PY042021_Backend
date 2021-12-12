@@ -5,6 +5,9 @@ from rest_framework import serializers
 from .serializer import *
 from django.http import JsonResponse, HttpResponse
 from functools import wraps
+from django.contrib.auth import authenticate, login, logout
+import json
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -74,4 +77,43 @@ def claseDetail(request, idClase):
    
    return JsonResponse(response_data)
 
+def clienteDetail(request):
 
+   if verifyUser(request):
+      response_data = {}
+      clientes = []
+      aficiones = []
+
+      cliente = Cliente.objects.all()
+
+      for c in cliente:
+         aficiones.clear()
+         for aficion in c.aficiones.all():
+            aficiones.append({'aficion': aficion.nombre})
+         
+         clientes.append({'nombre': c.nombre, 'aficiones': aficiones.copy()})
+         print(clientes)
+
+      response_data['clientes'] = clientes
+
+      return JsonResponse(response_data)
+   
+   else:
+      return JsonResponse({"message":"Acceso denegado"})
+
+def verifyUser(request):
+   data = json.loads(request.body)  
+   username= data['username']
+   password = data['pwd']
+   stayloggedin = data['stayloggedin']
+
+   user = authenticate(username=username, password=password)
+
+   if user is not None:
+       if user.is_active:
+           login(request, user)
+           return True
+       else:
+           return False
+   else:
+       return False
