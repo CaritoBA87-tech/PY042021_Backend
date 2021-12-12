@@ -38,5 +38,6 @@ urlpatterns = [
     path('planDetail/<int:idPlan>/', views.planDetail),
     path('instructorDetail/<int:idInstructor>/', views.instructorDetail),
     path('claseDetail/<int:idClase>/', views.claseDetail),
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema.schema)))
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema.schema))),
+    path('login/', views.ajax_update_module)
 ]

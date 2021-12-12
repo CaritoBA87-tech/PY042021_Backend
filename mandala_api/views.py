@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework import serializers
 from .serializer import *
 from django.http import JsonResponse, HttpResponse
+from functools import wraps
 
 # Create your views here.
 
@@ -72,5 +73,20 @@ def claseDetail(request, idClase):
    response_data['clase'] = {'nombre': clase.nombre, 'descripcion': clase.descripcion, 'instructor': clase.instructor.nombre + " " + clase.instructor.apellido, 'img' : clase.img }
    
    return JsonResponse(response_data)
+
+
+
+def ajax_login_required(view_func):
+   @wraps(view_func)
+   def wrapper(request, *args, **kwargs):
+      if request.user.is_authenticated():
+         return view_func(request, *args, **kwargs)
+      json = simplejson.dumps({ 'not_authenticated': True })
+      return HttpResponse(json, mimetype='application/json')
+   return wrapper
+
+@ajax_login_required
+def ajax_update_module(request, module_slug, action):
+    return HttpResponse(json, mimetype='application/json')
 
 
