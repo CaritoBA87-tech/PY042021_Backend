@@ -75,18 +75,3 @@ def claseDetail(request, idClase):
    return JsonResponse(response_data)
 
 
-
-def ajax_login_required(view_func):
-   @wraps(view_func)
-   def wrapper(request, *args, **kwargs):
-      if request.user.is_authenticated():
-         return view_func(request, *args, **kwargs)
-      json = simplejson.dumps({ 'not_authenticated': True })
-      return HttpResponse(json, mimetype='application/json')
-   return wrapper
-
-@ajax_login_required
-def ajax_update_module(request, module_slug, action):
-    return HttpResponse(json, mimetype='application/json')
-
-
