@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mandala_api',
     'rest_framework',
+    'rest_framework_simplejwt',
     'graphene_django',
     'corsheaders',
 ]
@@ -48,7 +49,8 @@ INSTALLED_APPS = [
 # Django rest framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication'
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }
 

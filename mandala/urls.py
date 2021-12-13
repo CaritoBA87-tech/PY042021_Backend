@@ -21,7 +21,7 @@ from django.conf.urls import url
 from graphene_django.views import GraphQLView
 from mandala_api import schema 
 from django.views.decorators.csrf import csrf_exempt
-
+from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
 router.register(r'planes', views.PlanViewSet)
@@ -39,5 +39,8 @@ urlpatterns = [
     path('instructorDetail/<int:idInstructor>/', views.instructorDetail),
     path('claseDetail/<int:idClase>/', views.claseDetail),
     path('clientesDetail/', csrf_exempt(views.clienteDetail)),
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema.schema)))
+    #path('clientesDetail2/', csrf_exempt(views.clienteDetail2)),
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema.schema))),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]
