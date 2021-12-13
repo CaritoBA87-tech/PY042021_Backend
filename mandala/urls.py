@@ -39,7 +39,6 @@ urlpatterns = [
     path('instructorDetail/<int:idInstructor>/', views.instructorDetail),
     path('claseDetail/<int:idClase>/', views.claseDetail),
     path('clientesDetail/', csrf_exempt(views.clienteDetail)),
-    #path('clientesDetail2/', csrf_exempt(views.clienteDetail2)),
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema.schema))),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
