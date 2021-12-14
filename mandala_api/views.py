@@ -8,8 +8,10 @@ from functools import wraps
 from django.contrib.auth import authenticate, login, logout
 import json
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
+from .permisions import IsPostOrIsAuthenticated
 
 # Create your views here.
 
@@ -40,7 +42,7 @@ class AficionViewSet(viewsets.ModelViewSet):
 
 class ClienteViewSet(viewsets.ModelViewSet):
    """API que permite realizar operaciones en la tabla Cliente"""
-   permission_classes = [IsAuthenticated]
+   permission_classes = [IsPostOrIsAuthenticated] # [IsAuthenticated]
    queryset = Cliente.objects.all().order_by('id')
    serializer_class = ClienteSerializer
 
